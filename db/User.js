@@ -9,7 +9,7 @@ const User = conn.define('user', {
 },
 {
     classMethods: {
-        createAndCount: function() {
+        countLetters: function() {
             return this.findAll()
             .then( (users) => {
                 var map = users.reduce(function(_map, user) {
@@ -18,7 +18,6 @@ const User = conn.define('user', {
                     _map[letter]++;
                     return _map
                 }, {})
-                // console.log('MAP ==========', map)
                 return map;
             });
         },
@@ -29,6 +28,15 @@ const User = conn.define('user', {
             }
             Promise.all(users)
             console.log('regenerated users')
+        },
+        findByLetter: function(letter) {
+            return this.findAll({
+                where: {
+                    lastName: {
+                        $like: `${letter}%`
+                    }
+                }
+            })
         }
     }
 });
