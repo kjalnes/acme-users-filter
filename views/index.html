@@ -5,38 +5,8 @@
     <body>
         <div class='container'>
             <h1> Acme Users Filter </h1>
-            <div class="well">
-            <h3> Filtered </h3>
-                <ul class="nav nav-tabs">
-                {% for letter in letters %}
-                    <li><a href="/users/filter/{{loop.key}}">{{loop.key}}({{letter}})</a></li>
-                {% endfor %}
-                </ul>
-                <br>
-                <form method="POST" action="/regenerate">
-                    <button class="btn btn-primary"> Regenerate</button>
-                </form>
-            </div>
-
-            <div class="well">
-                <h3> All users</h3>
-                <!-- {{ users | json }} -->
-                <table class="table">
-                    <thead>
-                        <th>First name</th>
-                        <th>Last name</th>
-                    </thead>
-                    <tbody>
-                        {% for user in users %}
-                            <tr>
-                                <td>{{user.firstName}}</td>
-                                <td>{{user.lastName}}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-
+            {% include '_filter.html' %}
+            {% include '_users.html' %}
         </div>
     </body>
 </html>

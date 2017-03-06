@@ -16,8 +16,13 @@ const seed = () => {
     return connect()
     .then( () => {
         let users =[];
-        for(var i=0; i < 10; i++) {
-            users.push(User.create({firstName: faker.name.firstName(), lastName: faker.name.lastName() }))
+        for(var i=0; i < 100; i++) {
+            users.push(User.create({
+                firstName: faker.name.firstName(),
+                lastName: faker.name.lastName(),
+                email: faker.internet.email(),
+                location: [ faker.address.latitude(), faker.address.longitude()]
+            }))
         }
         Promise.all(users)
         console.log('seeded')

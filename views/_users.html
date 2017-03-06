@@ -1,0 +1,21 @@
+<div class="well">
+    <h3> Users</h3>
+    <table class="table">
+        <thead>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Location</th>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.location}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,13 @@
+<div class="well">
+    <h3> Filtered </h3>
+    <ul class="nav nav-tabs">
+        {% for letter in letters %}
+            <li><a href="/users/filter/{{loop.key}}">{{loop.key}}({{letter}})</a></li>
+        {% endfor %}
+            <li><a href="/">All</a></li>
+    </ul>
+    <br>
+    <form method="POST" action="/regenerate">
+        <button class="btn btn-primary"> Regenerate</button>
+    </form>
+</div>
