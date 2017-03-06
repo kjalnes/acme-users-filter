@@ -2,7 +2,6 @@ const User = require('./User');
 const conn = require('./_conn')
 const faker = require('faker');
 
-
 let _connect;
 
 const connect = () => {
@@ -16,13 +15,12 @@ const connect = () => {
 const seed = () => {
     return connect()
     .then( () => {
-        Promise.all([
-            User.create({firstName: 'Moon', lastName: 'Alnes'}),
-            User.create({firstName: faker.name.firstName(), lastName: faker.name.lastName() }),
-            User.create({firstName: faker.name.firstName(), lastName: faker.name.lastName() }),
-            User.create({firstName: faker.name.firstName(), lastName: faker.name.lastName() })
-        ])
-    console.log('seeded')
+        let users =[];
+        for(var i=0; i < 10; i++) {
+            users.push(User.create({firstName: faker.name.firstName(), lastName: faker.name.lastName() }))
+        }
+        Promise.all(users)
+        console.log('seeded')
     });
 }
 

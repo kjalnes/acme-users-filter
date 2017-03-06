@@ -12,13 +12,23 @@ app.engine('html', swig.renderFile);
 
 
 app.get('/', (req, res, next) => {
-    conn.User.findAll()
+
+    Promise.all([
+        conn.User.findAll(),
+        conn.User.createAndCount()
+    ])
     .then( ( result) => {
-        console.log('!!!!!!!!!!!!!!!!!!!!!!', result)
-        res.render('index', { users: result });
+        // console.log('result ========', result)
+        res.render('index', { users: result[0], letters: result[1] });
     })
     .catch( err => console.log(err))
 });
+
+app.post('/regenerate', (req, res, next) => {
+    conn.sync()
+    .then( () => conn.User.regenerate() )
+    .then( () => res.redirect('/') )
+})
 
 
 // sync and connect
